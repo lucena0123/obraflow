@@ -67,6 +67,7 @@ function Actions({
     <>
       {error && (
         <p className="form-error" role="alert">
+          <Info size={18} aria-hidden="true" />
           {error}
         </p>
       )}

@@ -471,6 +471,7 @@ export function Issues({ projectId }: { projectId?: string }) {
                     </td>
                     <td>
                       <span className={`priority-label ${i.priority}`}>
+                        <AlertTriangle size={14} aria-hidden="true" />
                         {PRIORITY_LABELS[i.priority]}
                       </span>
                     </td>
@@ -614,12 +615,14 @@ export function Finance({ projectId }: { projectId?: string }) {
         <Metric
           label="Orçamento aprovado"
           value={money(f.budget)}
+          monetary
           icon={Wallet}
           hint="Limite aprovado para execução"
         />
         <Metric
           label="Saldo comprometido"
           value={money(f.committed)}
+          monetary
           icon={Landmark}
           hint="Contratado e ainda não realizado"
           accent="purple"
@@ -627,6 +630,7 @@ export function Finance({ projectId }: { projectId?: string }) {
         <Metric
           label="Custo realizado"
           value={money(f.actual)}
+          monetary
           icon={Coins}
           hint="Medições efetivamente registradas"
           accent="blue"
@@ -634,6 +638,7 @@ export function Finance({ projectId }: { projectId?: string }) {
         <Metric
           label="Saldo disponível"
           value={money(f.balance)}
+          monetary
           icon={TrendingUp}
           hint="Orçado − realizado − comprometido"
           accent={f.balance < 0 ? "amber" : "teal"}
@@ -654,7 +659,7 @@ export function Finance({ projectId }: { projectId?: string }) {
       >
         {projects.length ? (
           <div className="table-scroll">
-            <table>
+            <table className="financial-progress-table">
               <thead>
                 <tr>
                   <th>Obra</th>

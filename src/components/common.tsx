@@ -7,6 +7,10 @@ import {
   X,
   ArrowUpRight,
   CircleDashed,
+  CircleCheck,
+  Clock3,
+  HardHat,
+  PauseCircle,
   ChevronRight,
   type LucideIcon,
 } from "lucide-react";
@@ -111,15 +115,19 @@ export function Metric({
   icon: Icon,
   hint,
   accent = "teal",
+  monetary = false,
 }: {
   label: string;
   value: ReactNode;
   icon: LucideIcon;
   hint: string;
   accent?: string;
+  monetary?: boolean;
 }) {
   return (
-    <div className={`metric metric-${accent}`}>
+    <div
+      className={`metric metric-${accent}${monetary ? " metric-currency" : ""}`}
+    >
       <div className="metric-top">
         <span>{label}</span>
         <span className="metric-icon">
@@ -131,14 +139,6 @@ export function Metric({
         <span className="tiny-dot" />
         {hint}
       </div>
-      <svg viewBox="0 0 120 38" className="spark" aria-hidden="true">
-        <path
-          d="M0 34L14 29L26 31L40 17L54 22L69 13L82 19L99 4L120 0"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-      </svg>
     </div>
   );
 }
@@ -171,9 +171,16 @@ export function Progress({
   );
 }
 export function StatusBadge({ status }: { status: ProjectStatus | "delayed" }) {
+  const Icon = {
+    planned: CircleDashed,
+    active: HardHat,
+    paused: PauseCircle,
+    completed: CircleCheck,
+    delayed: Clock3,
+  }[status];
   return (
     <span className={`status-badge ${status}`}>
-      <i />
+      <Icon size={14} aria-hidden="true" />
       {STATUS_LABELS[status]}
     </span>
   );

@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { Printer, FileText, ShieldCheck, Layers3 } from "lucide-react";
+import { Printer, FileText, ShieldCheck } from "lucide-react";
+import { RlmLogo } from "@/components/rlm-logo";
 import { useData } from "@/data/store";
 import {
   AREAS,
@@ -81,8 +82,9 @@ export function Reports() {
         <div className="report-cover">
           <div>
             <span className="report-brand">
-              <Layers3 size={24} />
-              obra<span>flow</span>
+              <RlmLogo variant="white" className="screen-logo" />
+              <RlmLogo className="print-logo" />
+              <span>ObraFlow</span>
             </span>
             <p>RELATÓRIO GERENCIAL</p>
             <h1>
@@ -151,7 +153,7 @@ export function Reports() {
               02 <span>Execução e custos por obra</span>
             </div>
             <div className="table-scroll">
-              <table className="report-table">
+              <table className="report-table report-finance-table">
                 <thead>
                   <tr>
                     <th>Obra / área</th>

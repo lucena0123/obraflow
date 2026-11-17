@@ -1,6 +1,10 @@
 # ObraFlow
 
-MVP funcional de gestão de obras e melhorias industriais, preparado para apresentação comercial local. Identidade visual própria; todos os nomes, unidades, obras, valores e registros são fictícios. Nenhum sistema corporativo ou serviço externo está conectado.
+MVP funcional de gestão de obras e melhorias industriais, preparado para apresentação comercial local, com identidade visual alinhada ao design system da RLM Soluções Industriais. Todos os nomes, unidades, obras, valores e registros são fictícios. Nenhum sistema corporativo ou serviço externo está conectado.
+
+## Identidade RLM
+
+A interface usa azul-marinho e grafite, superfícies claras, títulos em Oswald e textos em Public Sans. Os arquivos de fonte e as logos são servidos pelo próprio aplicativo, sem depender de Google Fonts ou de outro domínio em tempo de execução. As cores funcionais de alerta, erro e sucesso aparecem com identificação textual. Os critérios visuais, a origem dos arquivos e a validação estão em [docs/IDENTIDADE_VISUAL.md](docs/IDENTIDADE_VISUAL.md).
 
 ## Demonstração online
 

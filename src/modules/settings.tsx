@@ -1,4 +1,5 @@
 "use client";
+import { RlmLogo } from "@/components/rlm-logo";
 import { useState } from "react";
 import {
   Database,
@@ -142,9 +143,8 @@ export function Settings() {
           subtitle="MVP de gestão de obras industriais"
         >
           <div className="about-mark">
-            <span>
-              obra<strong>flow</strong>
-            </span>
+            <RlmLogo />
+            <span>ObraFlow</span>
             <small>v1.0 · demonstração local</small>
           </div>
           <p className="settings-description">
@@ -153,7 +153,8 @@ export function Settings() {
           </p>
           <p className="settings-description">
             Todos os nomes, unidades, valores, cronogramas e registros são
-            fictícios. Identidade visual própria, criada para esta demonstração.
+            fictícios. Interface alinhada ao design system da RLM Soluções
+            Industriais.
           </p>
         </Panel>
       </div>

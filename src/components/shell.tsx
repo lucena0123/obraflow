@@ -19,7 +19,6 @@ import {
   Search,
   Menu,
   X,
-  Layers3,
   ShieldCheck,
   CircleHelp,
   Check,
@@ -30,6 +29,7 @@ import { visibleProjects } from "@/domain/calculations";
 import { Avatar, Modal, Select } from "./common";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import { RlmLogo } from "./rlm-logo";
 import {
   Dialog,
   DialogContent,
@@ -100,14 +100,11 @@ export function Shell({ children }: { children: ReactNode }) {
   const navigation = (
     <>
       <Link href="/" className="brand" onClick={() => setMobileOpen(false)}>
-        <span className="brand-mark">
-          <Layers3 size={25} strokeWidth={2.4} />
+        <RlmLogo variant="white" />
+        <span className="brand-product">
+          ObraFlow
+          <small>GESTÃO DE OBRAS INDUSTRIAIS</small>
         </span>
-        <span>
-          obra<span className="brand-light">flow</span>
-          <small>GESTÃO INDUSTRIAL</small>
-        </span>
-        <span className="brand-dot" />
       </Link>
       <div className="workspace-label">SEU ESPAÇO DE TRABALHO</div>
       <div className="workspace-switch">
@@ -294,15 +291,15 @@ export function Shell({ children }: { children: ReactNode }) {
           {children}
         </main>
         <footer className="app-footer">
-          <span>
-            ObraFlow <span>© {new Date().getFullYear()}</span>
-          </span>
-          <span>
-            <span className="tiny-dot" />
-            Demonstração com dados fictícios{" "}
-            <span className="footer-divider">/</span> Nenhuma integração
-            conectada
-          </span>
+          <RlmLogo variant="white" />
+          <div>
+            <strong>ObraFlow · RLM Soluções Industriais</strong>
+            <p>RLM Serviços e Soluções para Equipamentos Industriais LTDA</p>
+            <p>
+              © {new Date().getFullYear()} · Demonstração com dados fictícios ·
+              Dados salvos neste navegador
+            </p>
+          </div>
         </footer>
       </div>
       {notice && (

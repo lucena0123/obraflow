@@ -112,6 +112,7 @@ export function Dashboard() {
         />
         <Metric
           label="Orçamento aprovado"
+          monetary
           value={compactMoney(m.budget)}
           icon={Wallet}
           hint={`${compactMoney(m.actual)} em custos registrados`}

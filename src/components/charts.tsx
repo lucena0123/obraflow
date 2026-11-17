@@ -20,13 +20,13 @@ import {
   today,
 } from "@/domain/calculations";
 const tooltip = {
-  background: "#1b2634",
-  border: "1px solid #364355",
-  borderRadius: 10,
-  color: "#e8eef4",
-  fontSize: 12,
+  background: "var(--branco)",
+  border: "1px solid var(--azul-nevoa)",
+  borderRadius: 12,
+  color: "var(--grafite)",
+  fontSize: 14,
 };
-const axis = { fontSize: 11, fill: "#8491a5" };
+const axis = { fontSize: 13, fill: "var(--cinza-texto)" };
 export function BudgetChart({
   data,
   projects,
@@ -65,7 +65,7 @@ export function BudgetChart({
           margin={{ left: -12, top: 20, right: 6, bottom: 0 }}
         >
           <CartesianGrid
-            stroke="#293444"
+            stroke="var(--azul-nevoa)"
             strokeDasharray="3 5"
             vertical={false}
           />
@@ -83,7 +83,7 @@ export function BudgetChart({
             tickFormatter={(v) => `${v}k`}
           />
           <Tooltip
-            cursor={{ fill: "#ffffff04" }}
+            cursor={{ fill: "var(--fundo-claro)" }}
             contentStyle={tooltip}
             formatter={(v) => [
               `R$ ${Number(v).toLocaleString("pt-BR", { maximumFractionDigits: 1 })} mil`,
@@ -92,14 +92,15 @@ export function BudgetChart({
           <Bar
             dataKey="Orçado"
             isAnimationActive={false}
-            fill="#b4ddc6"
+            fill="var(--azul-nevoa)"
+            stroke="var(--azul-medio)"
             radius={[4, 4, 0, 0]}
             maxBarSize={35}
           />
           <Bar
             dataKey="Realizado"
             isAnimationActive={false}
-            fill="#658bda"
+            fill="var(--azul-rlm)"
             radius={[4, 4, 0, 0]}
             maxBarSize={35}
           />
@@ -148,12 +149,12 @@ export function CostChart({
         >
           <defs>
             <linearGradient id="cost-fill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#8ed7bc" stopOpacity={0.3} />
-              <stop offset="100%" stopColor="#8ed7bc" stopOpacity={0} />
+              <stop offset="0%" stopColor="var(--azul-rlm)" stopOpacity={0.2} />
+              <stop offset="100%" stopColor="var(--azul-rlm)" stopOpacity={0} />
             </linearGradient>
           </defs>
           <CartesianGrid
-            stroke="#293444"
+            stroke="var(--azul-nevoa)"
             strokeDasharray="3 5"
             vertical={false}
           />
@@ -175,7 +176,7 @@ export function CostChart({
             type="monotone"
             isAnimationActive={false}
             dataKey="Realizado"
-            stroke="#b4ddc6"
+            stroke="var(--azul-rlm)"
             strokeWidth={2.5}
             fill="url(#cost-fill)"
           />
