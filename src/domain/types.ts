@@ -1,10 +1,6 @@
-export const AREAS = [
-  "Construção civil",
-  "Serralheria",
-  "Pintura industrial",
-  "Obras e melhorias",
-] as const;
-export type Area = (typeof AREAS)[number];
+import type { ALL_AREAS } from "./demo";
+export { AREAS } from "./demo";
+export type Area = (typeof ALL_AREAS)[number];
 export type Profile = "coordinator" | "supervisor";
 export type ProjectStatus = "planned" | "active" | "paused" | "completed";
 export type IssueStatus = "open" | "in-progress" | "resolved";

@@ -1,5 +1,6 @@
 import type { DemoState } from "@/domain/types";
-import { AREAS, PEOPLE } from "@/domain/types";
+import { PEOPLE } from "@/domain/types";
+import { ALL_AREAS, DEMO_SECTOR, storageKeyForSector } from "@/domain/demo";
 import { validateProjectState } from "@/domain/validation";
 import { today } from "@/domain/calculations";
 
@@ -8,7 +9,7 @@ export interface Repository {
   save(data: DemoState): void;
   withWriteLock?<T>(operation: () => T): Promise<T>;
 }
-export const STORAGE_KEY = "obraflow.demo.v1";
+export const STORAGE_KEY = storageKeyForSector(DEMO_SECTOR);
 const isObject = (v: unknown): v is Record<string, unknown> =>
   typeof v === "object" && v !== null;
 const text = (v: unknown): v is string => typeof v === "string";
@@ -58,7 +59,7 @@ export function isDemoState(value: unknown): value is DemoState {
       (p) =>
         isObject(p) &&
         [p.id, p.code, p.name, p.description, p.unit].every(text) &&
-        AREAS.includes(p.area as (typeof AREAS)[number]) &&
+        ALL_AREAS.includes(p.area as (typeof ALL_AREAS)[number]) &&
         owner(p.ownerId) &&
         date(p.start) &&
         date(p.end) &&
@@ -228,9 +229,10 @@ export class LocalRepository implements Repository {
   constructor(
     private storage: () => Pick<Storage, "getItem" | "setItem"> = () =>
       localStorage,
+    private storageKey = STORAGE_KEY,
   ) {}
   load() {
-    const raw = this.storage().getItem(STORAGE_KEY);
+    const raw = this.storage().getItem(this.storageKey);
     if (!raw) return null;
     const parsed: unknown = JSON.parse(raw);
     // A base v1 anterior não tinha revisão. Preservamos seus registros válidos.
@@ -259,7 +261,7 @@ export class LocalRepository implements Repository {
         "A alteração produziria dados inconsistentes e não foi salva.",
       );
     try {
-      this.storage().setItem(STORAGE_KEY, JSON.stringify(data));
+      this.storage().setItem(this.storageKey, JSON.stringify(data));
     } catch {
       throw new Error(
         "Não foi possível salvar no navegador. Verifique o espaço disponível ou reduza os anexos. Nenhuma alteração foi aplicada.",
@@ -272,7 +274,7 @@ export class LocalRepository implements Repository {
         "Este navegador não oferece proteção de gravação entre abas. Abra a demonstração em um navegador atualizado pelo endereço local.",
       );
     return navigator.locks.request(
-      `${STORAGE_KEY}.write`,
+      `${this.storageKey}.write`,
       { mode: "exclusive" },
       operation,
     );

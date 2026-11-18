@@ -1,4 +1,56 @@
 /* RLM identity: shared brand tokens live in globals.css. */
+.electrical-demo-note {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid var(--azul-nevoa);
+  border-left: 4px solid var(--azul-medio);
+  border-radius: 8px;
+  background: var(--branco);
+  padding: 16px;
+  margin-bottom: 24px;
+  color: var(--azul-rlm);
+}
+.electrical-demo-note > svg {
+  flex-shrink: 0;
+}
+.electrical-demo-note strong {
+  font-size: 14px;
+}
+.electrical-demo-note p {
+  color: var(--cinza-texto);
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 4px 0 0;
+}
+.electrical-demo-note button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  min-height: 44px;
+  color: var(--azul-medio);
+  font-size: 13px;
+  font-weight: 700;
+}
+@media (max-width: 600px) {
+  .electrical-demo-note {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .electrical-demo-note > div {
+    flex: 1;
+    min-width: 200px;
+  }
+  .electrical-demo-note button {
+    margin-left: 29px;
+  }
+}
+@media print {
+  .electrical-demo-note {
+    display: none;
+  }
+}
 body {
   background: var(--fundo-claro);
   font-family: var(--font-texto);

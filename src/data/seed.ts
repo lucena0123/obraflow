@@ -5,8 +5,18 @@ import {
   type Area,
 } from "@/domain/types";
 import { shiftDate, today } from "@/domain/calculations";
+import { DEMO_SECTOR, type DemoSector } from "@/domain/demo";
+import { adaptElectricalSeed } from "./seed-electrical";
 
-export function createSeed(base = today()): DemoState {
+export function createSeed(
+  base = today(),
+  sector: DemoSector = DEMO_SECTOR,
+): DemoState {
+  const data = createIndustrialSeed(base);
+  return sector === "electrical" ? adaptElectricalSeed(data) : data;
+}
+
+function createIndustrialSeed(base: string): DemoState {
   const at = (offset: number) => shiftDate(base, offset);
   const specs: [
     string,

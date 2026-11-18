@@ -12,6 +12,7 @@ import {
   YAxis,
 } from "recharts";
 import { type DemoState, type Project, AREAS } from "@/domain/types";
+import { DEMO } from "@/domain/demo";
 import {
   dateLabel,
   daysBetween,
@@ -34,7 +35,7 @@ export function BudgetChart({
   data: DemoState;
   projects: Project[];
 }) {
-  const names = ["Civil", "Serralheria", "Pintura", "Melhorias"];
+  const names = DEMO.chartLabels;
   const chart = AREAS.map((area, i) => {
     const scoped = {
       ...data,

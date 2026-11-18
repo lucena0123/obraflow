@@ -50,6 +50,14 @@ Se a porta estiver ocupada, use `npm run dev -- --port 3001`. O endereço e a po
 - **Configurações:** alternância de perfil, informações do armazenamento e restauração explícita da base fictícia.
 - Layout responsivo, menu móvel, diálogos acessíveis, validação, busca global (atalho `/`), estados vazios e mensagens de confirmação/erro.
 
+## Demonstração para o setor elétrico
+
+Acesse [ObraFlow Elétrica](https://lucena0123.github.io/obraflow/eletrica/) para explorar oito exemplos fictícios de painéis, instalações, infraestrutura de cabos e inspeção. A versão industrial mantém o endereço e a base existentes. A versão elétrica usa armazenamento próprio; restaurá-la não apaga a demonstração industrial.
+
+O [guia da versão elétrica](docs/DEMONSTRACAO_ELETRICA.md) explica os cenários, a execução e as limitações. O [material para LinkedIn](docs/divulgacao/LINKEDIN_OBRAFLOW_ELETRICA.md) contém o texto de divulgação e um roteiro de vídeo. A capa fica em `public/obraflow-eletrica-social.png`.
+
+As duas versões são demonstrações locais, sem autenticação ou base corporativa compartilhada. Os exemplos elétricos não substituem projeto, laudos, procedimentos de segurança ou autorização de serviço.
+
 ## Roteiro para apresentação
 
 1. Explore os indicadores e filtre por **Equipe Horizonte**.
@@ -108,7 +116,7 @@ npm test
 npm run build
 ```
 
-Os 50 testes cobrem cálculos, filtros, datas, perfis, dependências, diário, finanças, pendências, exclusão em cascata, validação dos dados persistidos, falha de gravação e restauração. A verificação no navegador inclui navegação, CRUD, upload, recarga, escopo do supervisor, impressão e layout móvel. Evidências e limitações estão em [docs/VALIDACAO.md](docs/VALIDACAO.md).
+Os 56 testes cobrem cálculos, filtros, datas, perfis, dependências, diário, finanças, pendências, exclusão em cascata, validação dos dados persistidos, falha de gravação, restauração e isolamento das demonstrações industrial e elétrica. A verificação no navegador inclui navegação, CRUD, upload, recarga, escopo do supervisor, impressão e layout móvel. Evidências e limitações estão em [docs/VALIDACAO.md](docs/VALIDACAO.md) e [docs/VALIDACAO_ELETRICA.md](docs/VALIDACAO_ELETRICA.md).
 
 ## Persistência e limitações
 

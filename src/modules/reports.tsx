@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Printer, FileText, ShieldCheck } from "lucide-react";
 import { RlmLogo } from "@/components/rlm-logo";
+import { IS_ELECTRICAL } from "@/domain/demo";
 import { useData } from "@/data/store";
 import {
   AREAS,
@@ -89,7 +90,10 @@ export function Reports() {
             <p>RELATÓRIO GERENCIAL</p>
             <h1>
               Panorama de obras
-              <br />e melhorias industriais.
+              <br />
+              {IS_ELECTRICAL
+                ? "e instalações elétricas."
+                : "e melhorias industriais."}
             </h1>
           </div>
           <div className="report-meta">

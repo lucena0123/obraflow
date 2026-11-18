@@ -27,6 +27,7 @@ import { Modal, Select } from "./common";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
+import { DEMO } from "@/domain/demo";
 import { Label } from "./ui/label";
 
 function Field({
@@ -132,7 +133,7 @@ export function ProjectForm({
     project?.status ?? "planned",
   );
   if (!data) return null;
-  const nextCode = `OB-${String(Math.max(0, ...data.projects.map((p) => Number(p.code.match(/\d+$/)?.[0]) || 0)) + 1).padStart(3, "0")}`;
+  const nextCode = `${DEMO.codePrefix}-${String(Math.max(0, ...data.projects.map((p) => Number(p.code.match(/\d+$/)?.[0]) || 0)) + 1).padStart(3, "0")}`;
   function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
@@ -181,7 +182,7 @@ export function ProjectForm({
           <Field label="Unidade simulada">
             <Input
               name="unit"
-              defaultValue={project?.unit ?? "Unidade Horizonte"}
+              defaultValue={project?.unit ?? DEMO.unit}
               required
               minLength={3}
               maxLength={80}

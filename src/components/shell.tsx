@@ -23,7 +23,9 @@ import {
   CircleHelp,
   Check,
   TriangleAlert,
+  Zap,
 } from "lucide-react";
+import { DEMO, IS_ELECTRICAL } from "@/domain/demo";
 import { useData } from "@/data/store";
 import { visibleProjects } from "@/domain/calculations";
 import { Avatar, Modal, Select } from "./common";
@@ -102,17 +104,18 @@ export function Shell({ children }: { children: ReactNode }) {
       <Link href="/" className="brand" onClick={() => setMobileOpen(false)}>
         <RlmLogo variant="white" />
         <span className="brand-product">
-          ObraFlow
-          <small>GESTÃO DE OBRAS INDUSTRIAIS</small>
+          {DEMO.name}
+          <small>{DEMO.tagline}</small>
         </span>
       </Link>
       <div className="workspace-label">SEU ESPAÇO DE TRABALHO</div>
       <div className="workspace-switch">
         <span className="workspace-icon">
-          <HardHat size={19} />
+          {IS_ELECTRICAL ? <Zap size={19} /> : <HardHat size={19} />}
         </span>
         <span>
-          Unidade Horizonte<small>Operações industriais</small>
+          {DEMO.unit}
+          <small>{DEMO.operation}</small>
         </span>
         <ShieldCheck size={15} />
       </div>
@@ -147,7 +150,11 @@ export function Shell({ children }: { children: ReactNode }) {
             <span className="tiny-dot" />
             AMBIENTE DEMONSTRATIVO
           </span>
-          <h3>Explore. Planeje. Construa.</h3>
+          <h3>
+            {IS_ELECTRICAL
+              ? "Planeje. Registre. Acompanhe."
+              : "Explore. Planeje. Construa."}
+          </h3>
           <p>Uma nova perspectiva para a sua operação.</p>
           <button onClick={() => setHelp(true)}>
             Conheça a demonstração <ArrowUpRight size={16} />
@@ -271,6 +278,24 @@ export function Shell({ children }: { children: ReactNode }) {
           </div>
         </header>
         <main id="main-content">
+          {IS_ELECTRICAL && (
+            <section
+              className="electrical-demo-note"
+              aria-label="Sobre a demonstração elétrica"
+            >
+              <Zap size={21} aria-hidden="true" />
+              <div>
+                <strong>Demonstração para o setor elétrico</strong>
+                <p>
+                  Dados fictícios salvos neste navegador. Apoio gerencial, sem
+                  validade como projeto, laudo ou liberação de serviço.
+                </p>
+              </div>
+              <button onClick={() => setHelp(true)}>
+                Como funciona <ArrowUpRight size={15} aria-hidden="true" />
+              </button>
+            </section>
+          )}
           {blocked && (
             <div className="storage-banner" role="alert">
               <TriangleAlert size={18} />
@@ -293,12 +318,21 @@ export function Shell({ children }: { children: ReactNode }) {
         <footer className="app-footer">
           <RlmLogo variant="white" />
           <div>
-            <strong>ObraFlow · RLM Soluções Industriais</strong>
+            <strong>{DEMO.name} · RLM Soluções Industriais</strong>
             <p>RLM Serviços e Soluções para Equipamentos Industriais LTDA</p>
             <p>
               © {new Date().getFullYear()} · Demonstração com dados fictícios ·
               Dados salvos neste navegador
             </p>
+            {IS_ELECTRICAL && (
+              <p>
+                <a
+                  href={`${(process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/\/eletrica$/, "")}/`}
+                >
+                  Ver demonstração industrial
+                </a>
+              </p>
+            )}
           </div>
         </footer>
       </div>
@@ -359,8 +393,12 @@ export function Shell({ children }: { children: ReactNode }) {
       )}
       {help && (
         <Modal
-          title="Bem-vindo ao ObraFlow"
-          description="Gestão de obras e melhorias industriais, do planejamento à entrega."
+          title={`Bem-vindo ao ${DEMO.name}`}
+          description={
+            IS_ELECTRICAL
+              ? "Acompanhamento de obras elétricas, do planejamento à entrega documental."
+              : "Gestão de obras e melhorias industriais, do planejamento à entrega."
+          }
           onClose={() => setHelp(false)}
         >
           <div className="help-content">
@@ -390,6 +428,15 @@ export function Shell({ children }: { children: ReactNode }) {
               Você pode restaurar a base fictícia em Configurações. Estes perfis
               não representam autenticação de produção.
             </p>
+            {IS_ELECTRICAL && (
+              <p>
+                Os exemplos de painéis, infraestrutura, cabeamento e inspeção
+                são fictícios. O aplicativo não calcula ou dimensiona
+                instalações, não certifica conformidade e não substitui os
+                procedimentos de segurança ou a autorização dos responsáveis
+                técnicos.
+              </p>
+            )}
           </div>
           <Button onClick={() => setHelp(false)}>
             Vamos começar <ArrowUpRight size={16} />

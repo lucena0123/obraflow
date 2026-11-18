@@ -36,6 +36,7 @@ import {
 import { ProjectForm } from "@/components/forms";
 import { Button } from "@/components/ui/button";
 import { BudgetChart } from "@/components/charts";
+import { IS_ELECTRICAL } from "@/domain/demo";
 
 export function Dashboard() {
   const { data } = useData();
@@ -57,9 +58,21 @@ export function Dashboard() {
   return (
     <>
       <PageHeading
-        eyebrow="VISÃO EXECUTIVA"
-        title="Cada etapa sob controle."
-        description="Uma visão clara do que acontece nas suas obras, do campo ao resultado."
+        eyebrow={
+          IS_ELECTRICAL
+            ? "OBRAFLOW ELÉTRICA · VISÃO EXECUTIVA"
+            : "VISÃO EXECUTIVA"
+        }
+        title={
+          IS_ELECTRICAL
+            ? "Obras elétricas, etapa por etapa."
+            : "Cada etapa sob controle."
+        }
+        description={
+          IS_ELECTRICAL
+            ? "Do painel ao cabeamento: acompanhe planejamento, campo, pendências e custos em uma demonstração interativa."
+            : "Uma visão clara do que acontece nas suas obras, do campo ao resultado."
+        }
         actions={
           <>
             <span className="date-pill">

@@ -36,17 +36,28 @@ jobs:
         run: npm run lint
       - name: Executar testes
         run: npm test
-      - name: Gerar site estático
+      - name: Gerar demonstração industrial
         run: npm run build
         env:
           GITHUB_PAGES: "true"
           PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          NEXT_PUBLIC_DEMO_SECTOR: industrial
+      - name: Preservar demonstração industrial
+        run: mv out site
+      - name: Gerar demonstração elétrica
+        run: npm run build
+        env:
+          GITHUB_PAGES: "true"
+          PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}/eletrica
+          NEXT_PUBLIC_DEMO_SECTOR: electrical
+      - name: Reunir demonstrações
+        run: mv out site/eletrica
       - name: Verificar tipos
         run: npm run typecheck
       - name: Enviar artefato do site
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
-          path: out
+          path: site
 
   deploy:
     runs-on: ubuntu-latest

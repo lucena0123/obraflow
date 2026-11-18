@@ -1,5 +1,6 @@
 "use client";
 import { RlmLogo } from "@/components/rlm-logo";
+import { DEMO, IS_ELECTRICAL } from "@/domain/demo";
 import { useState } from "react";
 import {
   Database,
@@ -140,16 +141,23 @@ export function Settings() {
         </Panel>
         <Panel
           title="Sobre o ObraFlow"
-          subtitle="MVP de gestão de obras industriais"
+          subtitle={
+            IS_ELECTRICAL
+              ? "MVP demonstrativo de acompanhamento de obras elétricas"
+              : "MVP de gestão de obras industriais"
+          }
         >
           <div className="about-mark">
             <RlmLogo />
-            <span>ObraFlow</span>
+            <span>{DEMO.name}</span>
             <small>v1.0 · demonstração local</small>
           </div>
           <p className="settings-description">
             Uma experiência integrada de planejamento, rotina de campo e
-            controle financeiro para intervenções industriais.
+            controle financeiro para{" "}
+            {IS_ELECTRICAL
+              ? "obras elétricas fictícias. Não substitui projeto, laudo, procedimentos de segurança ou autorização de serviço."
+              : "intervenções industriais."}
           </p>
           <p className="settings-description">
             Todos os nomes, unidades, valores, cronogramas e registros são

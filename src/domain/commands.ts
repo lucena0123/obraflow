@@ -7,8 +7,8 @@ import {
   type Stage,
   PEOPLE,
   SUPERVISOR_ID,
-  AREAS,
 } from "./types";
+import { ALL_AREAS } from "./demo";
 import { today } from "./calculations";
 import { validDate, validateProjectState, validateStage } from "./validation";
 
@@ -66,7 +66,7 @@ export function saveProject(state: DemoState, input: Project) {
   requireDate(input.end);
   requireAmount(input.budget);
   if (
-    !AREAS.includes(input.area) ||
+    !ALL_AREAS.includes(input.area) ||
     !["active", "planned", "paused", "completed"].includes(input.status)
   )
     fail("Área ou situação inválida.");
